@@ -2,6 +2,12 @@ package ee.shuhari.day5;
 
 import junit.framework.TestCase;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
+import java.util.Arrays;
+
 import static org.junit.Assert.assertArrayEquals;
 
 public class IntComputerTest extends TestCase {
@@ -66,5 +72,66 @@ public class IntComputerTest extends TestCase {
     assertEquals(0, commandWithParamModes[3]);
   }
 
+  public void testComplicatedProgram() {
+    int[] program = {3, 21, 1008, 21, 8, 20, 1005, 20, 22, 107, 8, 21, 20, 1006, 20, 31,
+            1106, 0, 36, 98, 0, 0, 1002, 21, 125, 20, 4, 20, 1105, 1, 46, 104,
+            999, 1105, 1, 46, 1101, 1000, 1, 20, 4, 20, 1105, 1, 46, 98, 99};
+
+    testInputAndOutput(Arrays.copyOf(program, program.length), new byte[]{'7'}, new byte[]{'9', '9', '9'});
+    testInputAndOutput(Arrays.copyOf(program, program.length), new byte[]{'8'}, new byte[]{'1', '0', '0', '0'});
+    testInputAndOutput(program, new byte[]{'9'}, new byte[]{'1', '0', '0', '1'});
+  }
+
+  public void testJumpProgramPositionMode() {
+    int[] program = {3, 12, 6, 12, 15, 1, 13, 14, 13, 4, 13, 99, -1, 0, 1, 9};
+
+    testInputAndOutput(Arrays.copyOf(program, program.length), new byte[]{'1'}, new byte[]{'1'});
+    testInputAndOutput(program, new byte[]{'0'}, new byte[]{'0'});
+  }
+
+  public void testJumpProgramImmediateMode() {
+    int[] program = {3, 3, 1105, -1, 9, 1101, 0, 0, 12, 4, 12, 99, 1};
+
+    testInputAndOutput(Arrays.copyOf(program, program.length), new byte[]{'1'}, new byte[]{'1'});
+    testInputAndOutput(program, new byte[]{'0'}, new byte[]{'0'});
+  }
+
+  public void testEqualProgramPositionMode() {
+    int[] program = {3, 9, 8, 9, 10, 9, 4, 9, 99, -1, 8};
+
+    testInputAndOutput(Arrays.copyOf(program, program.length), new byte[]{'8'}, new byte[]{'1'});
+    testInputAndOutput(program, new byte[]{'7'}, new byte[]{'0'});
+  }
+
+  public void testEqualProgramImmediateMode() {
+    int[] program = {3, 3, 1108, -1, 8, 3, 4, 3, 99};
+
+    testInputAndOutput(Arrays.copyOf(program, program.length), new byte[]{'8'}, new byte[]{'1'});
+    testInputAndOutput(program, new byte[]{'7'}, new byte[]{'0'});
+  }
+
+  public void testLessThanProgramPositionMode() {
+    int[] program = {3, 9, 7, 9, 10, 9, 4, 9, 99, -1, 8};
+
+    testInputAndOutput(Arrays.copyOf(program, program.length), new byte[]{'8'}, new byte[]{'0'});
+    testInputAndOutput(program, new byte[]{'7'}, new byte[]{'1'});
+  }
+
+  public void testLessThanProgramImmediateMode() {
+    int[] program = {3, 3, 1107, -1, 8, 3, 4, 3, 99};
+
+    testInputAndOutput(Arrays.copyOf(program, program.length), new byte[]{'8'}, new byte[]{'0'});
+    testInputAndOutput(program, new byte[]{'7'}, new byte[]{'1'});
+  }
+
+
+  private void testInputAndOutput(int[] program, byte[] input, byte[] expectedOutput) {
+    ByteArrayOutputStream outBytes = new ByteArrayOutputStream();
+    PrintStream out = new PrintStream(outBytes);
+    InputStream in = new ByteArrayInputStream(input);
+    IntComputer computer = new IntComputer(in, out);
+    computer.compute(program);
+    assertArrayEquals(expectedOutput, outBytes.toByteArray());
+  }
 
 }
