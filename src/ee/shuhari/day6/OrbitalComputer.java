@@ -6,11 +6,17 @@ public class OrbitalComputer {
   Map<String,Body> bodies = new HashMap<>();
 
   public static void main(String[] args) {
+    long start = System.currentTimeMillis();
     OrbitalComputer computer = new OrbitalComputer(INPUT);
+    System.out.println("Parse and build universe (ms): " + (System.currentTimeMillis() - start));
+    start = System.currentTimeMillis();
     int i = computer.countOrbits();
     System.out.println(i);
+    System.out.println("Count orbits             (ms): " + (System.currentTimeMillis() - start));
+    start = System.currentTimeMillis();
     int j = computer.countTransfers("YOU", "SAN");
     System.out.println(j);
+    System.out.println("Count transfers to SAN   (ms): " + (System.currentTimeMillis() - start));
   }
 
   public OrbitalComputer(String input) {
