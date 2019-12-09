@@ -128,6 +128,25 @@ public class IntComputerTest extends TestCase {
     testInputAndOutput(program,new byte[]{}, (program[1] + "\n").getBytes());
   }
 
+  public void testRelativePositionSupport() {
+    long[] program = {109,1,21101,2,6,0,204,0,99};
+    testInputAndOutput(program,new byte[]{}, ("8\n").getBytes());
+  }
+
+  public void testHeapExtension() {
+    long[] program = {1101,1,1,11,1,12,11,11,4,11,99};
+    testInputAndOutput(program,new byte[]{}, ("2\n").getBytes());
+  }
+
+  public void testQuine() {
+    long[] program = {109,1,204,-1,1001,100,1,100,1008,100,16,101,1006,101,0,99};
+    testInputAndOutput(program,new byte[]{}, ("109\n1\n204\n-1\n1001\n100\n1\n100\n1008\n100\n16\n101\n1006\n101\n0\n99\n").getBytes());
+  }
+
+  public void testLargeMultiplication() {
+    long[] program = {1102,34915192,34915192,7,4,7,99,0};
+    testInputAndOutput(program,new byte[]{}, ("1219070632396864\n").getBytes());
+  }
 
   private void testInputAndOutput(long[] program, byte[] input, byte[] expectedOutput) {
     ByteArrayOutputStream outBytes = new ByteArrayOutputStream();
@@ -137,5 +156,7 @@ public class IntComputerTest extends TestCase {
     computer.compute(program);
     assertArrayEquals(expectedOutput, outBytes.toByteArray());
   }
+
+
 
 }
