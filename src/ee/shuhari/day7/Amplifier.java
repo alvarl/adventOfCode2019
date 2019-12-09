@@ -9,22 +9,22 @@ import java.util.List;
 
 public class Amplifier {
 
-  static final int[] PROGRAM = new int[]{3, 8, 1001, 8, 10, 8, 105, 1, 0, 0, 21, 34, 51, 68, 89, 98, 179, 260, 341, 422, 99999, 3, 9, 1001, 9, 4, 9, 102, 4, 9, 9, 4, 9, 99, 3, 9, 1002, 9, 5, 9, 1001, 9, 2, 9, 1002, 9, 2, 9, 4, 9, 99, 3, 9, 1001, 9, 3, 9, 102, 3, 9, 9, 101, 4, 9, 9, 4, 9, 99, 3, 9, 102, 2, 9, 9, 101, 2, 9, 9, 1002, 9, 5, 9, 1001, 9, 2, 9, 4, 9, 99, 3, 9, 102, 2, 9, 9, 4, 9, 99, 3, 9, 101, 2, 9, 9, 4, 9, 3, 9, 102, 2, 9, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 1001, 9, 2, 9, 4, 9, 3, 9, 1001, 9, 2, 9, 4, 9, 3, 9, 102, 2, 9, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 1001, 9, 1, 9, 4, 9, 99, 3, 9, 1001, 9, 1, 9, 4, 9, 3, 9, 102, 2, 9, 9, 4, 9, 3, 9, 1001, 9, 1, 9, 4, 9, 3, 9, 1001, 9, 1, 9, 4, 9, 3, 9, 1001, 9, 1, 9, 4, 9, 3, 9, 1001, 9, 2, 9, 4, 9, 3, 9, 101, 1, 9, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 101, 1, 9, 9, 4, 9, 3, 9, 1001, 9, 2, 9, 4, 9, 99, 3, 9, 101, 2, 9, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 1001, 9, 2, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 1001, 9, 1, 9, 4, 9, 3, 9, 1001, 9, 1, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 102, 2, 9, 9, 4, 9, 99, 3, 9, 1001, 9, 1, 9, 4, 9, 3, 9, 102, 2, 9, 9, 4, 9, 3, 9, 1001, 9, 1, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 1001, 9, 1, 9, 4, 9, 3, 9, 1001, 9, 1, 9, 4, 9, 3, 9, 1001, 9, 2, 9, 4, 9, 3, 9, 102, 2, 9, 9, 4, 9, 3, 9, 101, 2, 9, 9, 4, 9, 3, 9, 101, 2, 9, 9, 4, 9, 99, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 1001, 9, 2, 9, 4, 9, 3, 9, 101, 2, 9, 9, 4, 9, 3, 9, 102, 2, 9, 9, 4, 9, 3, 9, 1001, 9, 2, 9, 4, 9, 3, 9, 101, 2, 9, 9, 4, 9, 3, 9, 1001, 9, 2, 9, 4, 9, 3, 9, 102, 2, 9, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 101, 1, 9, 9, 4, 9, 99};
-  public static final int INPUT_POWER = 0;
-  static int max = 0;
+  static final long[] PROGRAM = new long[]{3, 8, 1001, 8, 10, 8, 105, 1, 0, 0, 21, 34, 51, 68, 89, 98, 179, 260, 341, 422, 99999, 3, 9, 1001, 9, 4, 9, 102, 4, 9, 9, 4, 9, 99, 3, 9, 1002, 9, 5, 9, 1001, 9, 2, 9, 1002, 9, 2, 9, 4, 9, 99, 3, 9, 1001, 9, 3, 9, 102, 3, 9, 9, 101, 4, 9, 9, 4, 9, 99, 3, 9, 102, 2, 9, 9, 101, 2, 9, 9, 1002, 9, 5, 9, 1001, 9, 2, 9, 4, 9, 99, 3, 9, 102, 2, 9, 9, 4, 9, 99, 3, 9, 101, 2, 9, 9, 4, 9, 3, 9, 102, 2, 9, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 1001, 9, 2, 9, 4, 9, 3, 9, 1001, 9, 2, 9, 4, 9, 3, 9, 102, 2, 9, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 1001, 9, 1, 9, 4, 9, 99, 3, 9, 1001, 9, 1, 9, 4, 9, 3, 9, 102, 2, 9, 9, 4, 9, 3, 9, 1001, 9, 1, 9, 4, 9, 3, 9, 1001, 9, 1, 9, 4, 9, 3, 9, 1001, 9, 1, 9, 4, 9, 3, 9, 1001, 9, 2, 9, 4, 9, 3, 9, 101, 1, 9, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 101, 1, 9, 9, 4, 9, 3, 9, 1001, 9, 2, 9, 4, 9, 99, 3, 9, 101, 2, 9, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 1001, 9, 2, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 1001, 9, 1, 9, 4, 9, 3, 9, 1001, 9, 1, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 102, 2, 9, 9, 4, 9, 99, 3, 9, 1001, 9, 1, 9, 4, 9, 3, 9, 102, 2, 9, 9, 4, 9, 3, 9, 1001, 9, 1, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 1001, 9, 1, 9, 4, 9, 3, 9, 1001, 9, 1, 9, 4, 9, 3, 9, 1001, 9, 2, 9, 4, 9, 3, 9, 102, 2, 9, 9, 4, 9, 3, 9, 101, 2, 9, 9, 4, 9, 3, 9, 101, 2, 9, 9, 4, 9, 99, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 1001, 9, 2, 9, 4, 9, 3, 9, 101, 2, 9, 9, 4, 9, 3, 9, 102, 2, 9, 9, 4, 9, 3, 9, 1001, 9, 2, 9, 4, 9, 3, 9, 101, 2, 9, 9, 4, 9, 3, 9, 1001, 9, 2, 9, 4, 9, 3, 9, 102, 2, 9, 9, 4, 9, 3, 9, 1002, 9, 2, 9, 4, 9, 3, 9, 101, 1, 9, 9, 4, 9, 99};
+  public static final long INPUT_POWER = 0;
+  static long max = 0;
 
   public static void main(String[] args) {
 
-    ArrayList<Integer> phases = new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4));
+    ArrayList<Long> phases = new ArrayList<>(Arrays.asList(0L, 1L, 2L, 3L, 4L));
  //   permutateAndProcess(phases, 0);
 
-    phases = new ArrayList<>(Arrays.asList(5, 6, 7, 8, 9));
+    phases = new ArrayList<>(Arrays.asList(5L, 6L, 7L, 8L, 9L));
     permutateAndProcess(phases, 0);
 
     System.out.println(max);
   }
 
-  static void permutateAndProcess(java.util.List<Integer> arr, int k) {
+  static void permutateAndProcess(java.util.List<Long> arr, int k) {
     for (int i = k; i < arr.size(); i++) {
       java.util.Collections.swap(arr, i, k);
       permutateAndProcess(arr, k + 1);
@@ -35,12 +35,12 @@ public class Amplifier {
     }
   }
 
-  private static void processSinglePassPhasePermutations(List<Integer> arr) {
-    int outputPower = 0;
-    ArrayList<Integer> output = new ArrayList<>();
-    for (Integer integer : arr) {
+  private static void processSinglePassPhasePermutations(List<Long> arr) {
+    long outputPower = 0;
+    ArrayList<Long> output = new ArrayList<>();
+    for (Long integer : arr) {
       output.clear();
-      ArrayList<Integer> providedInputs = new ArrayList<>(Arrays.asList(integer, outputPower));
+      ArrayList<Long> providedInputs = new ArrayList<>(Arrays.asList(integer, outputPower));
       IntComputer computer = new IntComputer(providedInputs, output);
       computer.compute(PROGRAM);
       outputPower = output.get(0);
@@ -48,14 +48,14 @@ public class Amplifier {
     System.out.println(outputPower);
   }
 
-  private static int processContinuousPhasePermutations(List<Integer> phases) {
+  private static long processContinuousPhasePermutations(List<Long> phases) {
     System.out.println(phases.toArray().toString());
     int outputPower = 0;
-    List<Integer> lastOutput = Collections.synchronizedList(new ArrayList<>());
+    List<Long> lastOutput = Collections.synchronizedList(new ArrayList<>());
     List<Thread> amplifiers = new ArrayList<>();
 
     IntComputer prevAmplifier = null;
-    for (Integer phase : phases) {
+    for (Long phase : phases) {
       IntComputer a = new IntComputer();
       if(prevAmplifier != null) {
         a.inputTap = prevAmplifier.outputSink;
