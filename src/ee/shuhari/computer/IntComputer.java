@@ -51,7 +51,7 @@ public class IntComputer {
     if(inputTap != null) {
       while(inputTap.size() == 0) {
         try {
-          Thread.sleep(1);
+          Thread.sleep(10);
         } catch (InterruptedException e) {
           e.printStackTrace();
         }
