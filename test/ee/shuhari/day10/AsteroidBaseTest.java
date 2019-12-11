@@ -3,6 +3,7 @@ package ee.shuhari.day10;
 import junit.framework.TestCase;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class AsteroidBaseTest extends TestCase {
 
@@ -142,9 +143,58 @@ public class AsteroidBaseTest extends TestCase {
     assertEquals(210, base.maxVisibleAsteroids);
   }
 
+  public void testSortAsteroidsByAngleFrom12oClock() {
+//  #..........
+//  ...........
+//  ..#........
+//  ...........
+//  ...........
+//  ..#.......#
+//  ...........
+//  ...........
+//  .......#...
+//  ...........
+//  ....#.....#
+
+    AsteroidBase.Point x0y0 = new AsteroidBase.Point(0, 0);
+    AsteroidBase.Point x2y2 = new AsteroidBase.Point(2, 2);
+    AsteroidBase.Point x10y5 = new AsteroidBase.Point(10, 5);
+    AsteroidBase.Point x10y10 = new AsteroidBase.Point(10, 10);
+    AsteroidBase.Point x7y8 = new AsteroidBase.Point(7, 8);
+    AsteroidBase.Point x4y10 = new AsteroidBase.Point(4, 10);
+    AsteroidBase.Point base = new AsteroidBase.Point(2, 5);
+
+    List<AsteroidBase.Point> sortedByAngle = AsteroidBase.sortByAngleFromTop(base, Arrays.asList(x0y0,x2y2,x10y10,x4y10,x7y8, x10y5));
+    assertEquals(Arrays.asList(x2y2, x10y5, x7y8, x10y10, x4y10, x0y0), sortedByAngle);
+  }
+
+  public void testAngleFromTop() {
+    AsteroidBase.Point x2y2 = new AsteroidBase.Point(2, 2);
+    AsteroidBase.Point x10y5 = new AsteroidBase.Point(10, 5);
+    AsteroidBase.Point base = new AsteroidBase.Point(2, 5);
+    assertEquals(0d, AsteroidBase.getAngleFromTop(base, x2y2));
+    assertEquals(Math.PI / 2, AsteroidBase.getAngleFromTop(base, x10y5));
+  }
+
   public void testInput() {
     AsteroidBase base = new AsteroidBase(input);
     base.findBaseLocationWithBestVisibility();
     System.out.println(base.maxVisibleAsteroids);
+  }
+
+  public void testInputVaporization() {
+    AsteroidBase base = new AsteroidBase(input);
+    AsteroidBase.Point point = base.findBaseLocationWithBestVisibility();
+    System.out.println(base.maxVisibleAsteroids);
+    base.vaporize(point);
+
+  }
+
+  public void testTestCaseVaporization() {
+    AsteroidBase base = new AsteroidBase(sampleWith210DetectedAsteroidsBestAt11and13);
+    AsteroidBase.Point point = base.findBaseLocationWithBestVisibility();
+    System.out.println(base.maxVisibleAsteroids);
+    base.vaporize(point);
+
   }
 }
